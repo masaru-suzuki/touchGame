@@ -50,7 +50,7 @@ class Board {
   }
   activate() {
     const nums = [];
-    for (let i = 0; i < this.geme.getLevel() ** 2; i++){
+    for (let i = 0; i < this.game.getLevel() ** 2; i++){
       //new Panel() はconstructorを指しているの？
       nums.push(i);
     }
