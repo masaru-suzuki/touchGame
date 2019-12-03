@@ -85,6 +85,10 @@
       const btn = document.getElementById('btn');
       btn.addEventListener('click',() => {
         this.start();
+        if (typeof this.timeoutId === 'undefined') {
+          // this.stop();
+          clearTimeout(this.timeoutId);
+        }
       });
       this.setup();
     }
@@ -95,14 +99,20 @@
       container.style.width = PANEL_WIDTH * this.level + PANEL_PADDING * this.level + 'px'
     }
     start() {
-          if (typeof this.timeoutId !== 'undefined'){
-            clearTimeout(this.timeoutId);
-          }
-          this.currentNum = 0;
-          this.board.activate();
-          this.startTime = Date.now();
-          this.runTimer();
+      this.currentNum = 0;
+      this.board.activate();
+      this.startTime = Date.now();
+      this.runTimer();
+      // btn.textContent = 'STOP'
+      //再度btnを押したときにカウントが再開する
     }
+    // stop() {
+    //   //btnを押した時のカウントを保持
+    //   //
+    //   clearTimeout(this.timeoutId);
+    //   this.stopTimer();
+    //   btn.textContent = 'START'
+    // }
      runTimer() {
       const timer = document.getElementById('timer');
       timer.textContent = ((Date.now() - this.startTime) / 1000).toFixed(2);
@@ -110,6 +120,9 @@
         this.runTimer();
       }, 10);
     }
+    // stopTimer() {
+    //   timer.textContent = 
+    // }
     addCurrentNum() {
       this.currentNum++;
     }
@@ -124,7 +137,7 @@
     }
   }
 
-  new Game(3);
+  new Game(4);
 
 
 }
